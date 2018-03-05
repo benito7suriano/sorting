@@ -1,23 +1,35 @@
+
+function swap (array, i) {
+  if (array[i] > array[i + 1]) {
+    // this is a swap
+    let temporary = array[i];
+    array[i] = array[i + 1];
+    array[i + 1] = temporary;
+  }
+  return array;
+}
+
 function bubbleSort(array) {
   // 2. swap / move header, transitioning the biggest value towards the end
   // 3. repeat 1-2 on a sub-array, cutting off the last element of the main array
-
   let result = array;
-
-  // 1. loop through each item of the array
-  for(let i = 0; i < result.length; i++) {
+  console.log(array.length)
+  let endOfArray = result.length;
+  for (let i = 0; i < endOfArray; i++) {
+    
     // 1.1 Swap: if array[i] > array[i+1]
-    if(array[i] > array[i+1]) {
-      // this is a swap
-      let temporary = array[i];
-      array[i] = array[i+1];
-      array[i+1] = temporary;
+    if (endOfArray === 1) {
+      return result
     }
+    result = swap(array, i)
     // 1.2 Move header: next iteration of loop
+    if (i === endOfArray - 1) {
+      i = 0;
+      endOfArray -= 1;
+    }
+
   }
   return result;
-
-  // used recursively here:
-  // bubbleSort(array.slice(0, array.length - 1));
-
 }
+
+bubbleSort([5,1])
