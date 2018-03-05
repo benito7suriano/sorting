@@ -16,7 +16,7 @@ function merge(arr1,arr2) {
     // take the first element of each array
     let element1 = arr1[0];
     let element2 = arr2[0];
-    debugger
+
     if(element1 == undefined) {
       mergedArr.push(arr2.shift());
 
@@ -34,4 +34,15 @@ function merge(arr1,arr2) {
   return mergedArr;
 }
 
-merge([1],[2]);
+// merge([1],[2]);
+
+
+function mergeSort(arr) {
+  let result = arr;
+  if (arr.length === 1) {
+    return result;
+  } else {
+    //
+  }
+
+}
