@@ -31,5 +31,3 @@ function bubbleSort(array) {
   }
   return result;
 }
-
-bubbleSort([5,1])
