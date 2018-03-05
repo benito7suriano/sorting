@@ -12,7 +12,7 @@ function split(wholeArray) {
 }
 
 function merge(arr1, arr2) {
-  
+
   // initialize a merged array that's going to hold the result
   let mergedArr = [];
   // repeat until there are no values left in the arr's
@@ -43,16 +43,19 @@ function merge(arr1, arr2) {
 
 function mergeSort(arr) {
   debugger;
+  let firstHalf,secondHalf;
   if (arr.length === 1) {
     return arr;
   } else {
     let splitArr = split(arr);
-    let firstHalf = mergeSort(arr[0]);
-    let secondHalf = mergeSort(arr[1]);
-    return merge(firstHalf, secondHalf)
+    firstHalf = mergeSort(splitArr[0]);
+    secondHalf = mergeSort(splitArr[1]);
+    console.log(firstHalf);
+    console.log(secondHalf);
     //merge elements into sorted subarrays
   }
+  return merge(firstHalf, secondHalf)
 
 }
 
-//mergeSort ([2,1])
+mergeSort ([2,1]);
