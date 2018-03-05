@@ -42,20 +42,22 @@ function merge(arr1, arr2) {
 
 
 function mergeSort(arr) {
-  debugger;
-  let firstHalf,secondHalf;
+  let splitArr;
+  let firstHalf, secondHalf;
+  let merged;
+
   if (arr.length === 1) {
     return arr;
   } else {
-    let splitArr = split(arr);
+    splitArr = split(arr);
+
     firstHalf = mergeSort(splitArr[0]);
     secondHalf = mergeSort(splitArr[1]);
-    console.log(firstHalf);
-    console.log(secondHalf);
-    //merge elements into sorted subarrays
-  }
-  return merge(firstHalf, secondHalf)
 
+    merged = merge(firstHalf, secondHalf);
+    console.log(merged);
+    return merged;
+  }
 }
 
-mergeSort ([2,1]);
+mergeSort([2,1]);

@@ -24,7 +24,7 @@ describe("Merge sort function", function() {
   it('split an unsorted array and merge it together sorted', function(){
     //expect( mergeSort ([1]) ).toEqual([1]);
     expect( mergeSort ([2,1]) ).toEqual([1,2]);
-    //expect( mergeSort ([3,1,2]) ).toEqual([1,2,3]);
-    //expect( mergeSort ([3,4,1,5,7])).toEqual([1,3,4,5,7]);
+    expect( mergeSort ([3,1,2]) ).toEqual([1,2,3]);
+    expect( mergeSort ([3,4,1,5,7])).toEqual([1,3,4,5,7]);
   });
 });
