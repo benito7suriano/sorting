@@ -55,7 +55,7 @@ function mergeSort(arr) {
     secondHalf = mergeSort(splitArr[1]);
 
     merged = merge(firstHalf, secondHalf);
-    console.log(merged);
+    // console.log(merged);
     return merged;
   }
 }

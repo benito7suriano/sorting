@@ -1,22 +1,28 @@
-function swap(array, i) {
-  // 1.1 Swap: if array[i] > array[i+1]
-  if (array[i] > array[i + 1]) {
-    // this is a swap
-    let temporary = array[i];
-    array[i] = array[i + 1];
-    array[i + 1] = temporary;
+function swap(arr, i) {
+  if (arr[i] > arr[i + 1]) {
+    [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
   }
-  return array;
+
+  return arr
 }
 
-function bubbleSort(array) {
-  let length = array.length;
+function bubbleSort(array, n = array.length) {
 
-  while (length) {
-    for (let i = 0; i < length; i++) {
-      swap(array, i);
+  let length = n
+
+  // Base Case: If array size is 1, return.
+  if (length === 0 || length === 1) {
+    return array
+  } else {
+    // Do One Pass of normal Bubble Sort. This pass fixes last element of current subarray.
+    for (let i = 0; i < length - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        array = swap(array, i)
+      }
     }
-    length--;
+    length--
+    // Recur for all elements except last of current subarray.
+    return bubbleSort(array, length)
   }
-  return array;
 }
+
