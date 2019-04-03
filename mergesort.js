@@ -9,15 +9,21 @@ function split(array) {
   return [firstHalf, secondHalf]
 }
 
-function merge(arr1, arr2) {
+function merge(arr1, arr2, func) {
   let result = []
 
   while(arr1.length || arr2.length) {
 
     if(arr1.length && arr2.length) {
-      arr1[0] < arr2[0]
-      ? result.push(arr1.shift())
-      : result.push(arr2.shift())
+      if(!func) {
+        arr1[0] < arr2[0]
+        ? result.push(arr1.shift())
+        : result.push(arr2.shift())
+      } else {
+        func(arr1[0],arr2[0]) === 1
+        ? result.push(arr2.shift())
+        : result.push(arr1.shift())
+      }
 
     } else if(!arr1.length && arr2.length) {
       result.push(arr2.shift())
@@ -29,22 +35,21 @@ function merge(arr1, arr2) {
   return result
 }
 
-function mergeSort(array) {
+function mergeSort(array,func) {
   let splitArray
   let firstHalf, secondHalf
   let mergedArray
 
-  if (array.length === 1) {
-    return array
-  } else {
-    splitArray = split(array)
+    if (array.length === 1) {
+      return array
+    } else {
+      splitArray = split(array)
 
-    firstHalf = mergeSort(splitArray[0])
-    secondHalf = mergeSort(splitArray[1])
+      firstHalf = mergeSort(splitArray[0])
+      secondHalf = mergeSort(splitArray[1])
 
-    mergedArray = merge(firstHalf, secondHalf)
-  }
+      mergedArray = merge(firstHalf, secondHalf, func)
+    }
 
   return mergedArray
-
 }
