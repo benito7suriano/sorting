@@ -1,3 +1,18 @@
+function comparator(a,b) {
+  if(a.age < b.age) return -1
+  if(a.age > b.age) return 1
+  return 0
+}
+
+function arrayGenerator(length, lo, hi) {
+  let array = []
+  while(length--) {
+    array.push(Math.floor(lo + Math.random()*hi))
+  }
+
+  return array
+}
+
 describe('Split Array function', function() {
 
 
@@ -20,21 +35,19 @@ describe('Merge function', function() {
   })
 })
 
-function comparator(a,b) {
-  if(a.age < b.age) return -1
-  if(a.age > b.age) return 1
-  return 0
-}
-
 describe('Merge sort function', function() {
-  it('split an unsorted array and merge it together sorted', function(){
-    //expect( mergeSort ([1]) ).toEqual([1]);
-    expect( mergeSort ([2,1]) ).toEqual([1,2])
-    expect( mergeSort ([3,1,2]) ).toEqual([1,2,3])
-    expect( mergeSort ([3,4,1,5,7])).toEqual([1,3,4,5,7])
-  })
 
-  it('sort thru mergeSort using comparator function', () => {
+  for(let i =2; i < 103; i += 20) {
+    let randomArray = arrayGenerator(i, 0, 100)
+    let sorted = [...randomArray].sort( (a,b) => a - b )
+
+    it(`sorts a random array of ${i} items`, function(){
+      //expect( mergeSort ([1]) ).toEqual([1]);
+      expect( mergeSort (randomArray) ).toEqual( sorted )
+    })
+  }
+
+  it('sorts thru mergeSort using comparator function', () => {
     expect(mergeSort([3, 4, 1, 5, 7], comparator)).toEqual([1, 3, 4, 5, 7])
   })
 })
