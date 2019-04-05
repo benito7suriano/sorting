@@ -4,13 +4,22 @@ describe('Bubble Sort', function(){
 
   })
 
-  const objExample1 = [{age: 4}, {age: 2}]
   const objExample2 = [{age: 4}, {age: 8}, {age: 2}, {age: 9}]
 
   function comparator(a, b) {
     if(a.age < b.age) return -1 // returning -1 means 'a goes before b'
     if(a.age > b.age) return 1 // returning 1 means 'b goes before a'
     return 0 // returning 0 means 'a and b are equivalent'
+  }
+
+  function arrayGenerator(length, lo, hi) {
+    let array = []
+
+    while (length--) {
+      array.push(Math.floor(lo + Math.random() * hi))
+    }
+
+    return array
   }
 
   it('handles an empty array', function() {
@@ -23,20 +32,17 @@ describe('Bubble Sort', function(){
     expect(window.swap.calls.count()).toEqual(0)
   })
 
-  it('sorts small arrays', function() {
-    expect(bubbleSort([7,3])).toEqual([3,7])
-    expect(window.swap.calls.count()).toEqual(1)
-  })
+  for(let i=2; i < 103; i += 10) {
+    let array = arrayGenerator(i, 0, 100)
+    let sorted = [...array].sort( (a,b) => a - b )
+    it(`handles array of length: ${i} random items...`, function() {
+      expect( bubbleSort(array) ).toEqual( sorted )
+    })
+  }
 
-  it('sorts big arrays', function() {
-    expect(bubbleSort([9,1,5,3,8,4])).toEqual([1,3,4,5,8,9])
-    expect(window.swap.calls.count()).toEqual(8)
-
-  })
-
-  it('returns arrays in correct order', function(){
-    expect(bubbleSort([1,2,3,4])).toEqual([1,2,3,4])
-    expect(window.swap.calls.count()).toEqual(0)
+  it(`calls swap the expected number of times`, function() {
+    bubbleSort( [6,3,5,1] )
+    expect( swap.calls.count() ).toEqual(5)
   })
 
   it('works with objects and arrays using a comparator function', function() {
@@ -49,4 +55,5 @@ describe('Bubble Sort', function(){
     expect(window.swap.calls.count()).toEqual(2)
   })
 })
+
 
